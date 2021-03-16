@@ -11,30 +11,16 @@ this.state= {
 }
 
 componentDidMount() {
-  fetch('http://jsonplaceholder.typicode.com/users/1')
+  fetch('http://jsonplaceholder.typicode.com/users')
   .then(response => response.json())
-  .then(monsters => this.setState({ monsters }));
-  console.log('data')
+  .then(users => this.setState({ monsters: users }));
 }
 
   render() {
+    const { monsters } = this.state;
     return (
-      // <div>
-      //   <h1>Hello World</h1>
-      //   {console.log(this.state.monsters)}
-      //   <h1>{this.state.monsters.id}</h1>
-      //   <h1>{this.state.monsters.name}</h1>
-      // </div>
-      
       <div className="App">
-        {this.state.monsters.map((name) => {
-          return (
-            <>
-            <h1>{this.state.monsters.id}</h1>
-            <h1>{this.state.monsters.name}</h1>
-            </>
-          )
-        })}
+        { monsters.map(monster => (<h1 key = { monster.id }>{ monster.name }</h1>)) }
       </div>
     );
   }
